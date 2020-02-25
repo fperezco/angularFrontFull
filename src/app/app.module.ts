@@ -7,6 +7,7 @@ import { MainRoutingModule } from './app.routes';
 import { RegisterComponent } from './login/register.component';
 import { PageModule } from './pages/page.module';
 import { SharedModule } from './shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { SharedModule } from './shared/shared.module';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     PageModule,
     SharedModule,
     MainRoutingModule,
