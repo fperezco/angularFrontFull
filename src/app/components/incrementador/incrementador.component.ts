@@ -13,7 +13,7 @@ export class IncrementadorComponent implements OnInit {
 
   @Output() cambioValor: EventEmitter<number> = new EventEmitter();
   //recibe un valor que es una referencia a un  elemento html
-  @ViewChild('txtProgress') txtProgress: ElementRef;
+  @ViewChild('txtProgress', {static: false}) txtProgress: ElementRef;
 
   constructor() {
 

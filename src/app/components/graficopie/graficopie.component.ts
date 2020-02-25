@@ -16,7 +16,7 @@ export class GraficopieComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log("contenido = ",this.contenido);
+    //console.log("contenido = ",this.contenido);
     this.labels = this.contenido.labels
     this.data = this.contenido.data;
     this.type = this.contenido.type;

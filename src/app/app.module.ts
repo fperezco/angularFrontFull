@@ -8,6 +8,9 @@ import { RegisterComponent } from './login/register.component';
 import { PageModule } from './pages/page.module';
 import { SharedModule } from './shared/shared.module';
 import { FormsModule } from '@angular/forms';
+//import { SettingsService } from './services/settings/settings.service';
+import { ServiceModule } from './services/service.module';
+
 
 @NgModule({
   declarations: [
@@ -21,8 +24,10 @@ import { FormsModule } from '@angular/forms';
     PageModule,
     SharedModule,
     MainRoutingModule,
+    //ServiceModule //no lo necesito pk uso provideIn root en todos los servicios
   ],
-  providers: [],
+  //providers: [ServiceModule],
+  //providers: [SettingsService], //eliminado al crear el módulo de servicios "ServiceModule"
   bootstrap: [AppComponent]
 })
 export class AppModule { }

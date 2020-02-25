@@ -13,6 +13,8 @@ import { GraficopieComponent } from '../components/graficopie/graficopie.compone
 
 //ng2 charts
 import { ChartsModule } from 'ng2-charts';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { TestComponent } from './test/test.component';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { ChartsModule } from 'ng2-charts';
     Graficas1Component,
     PagesComponent,
     IncrementadorComponent,
-    GraficopieComponent
+    GraficopieComponent,
+    AccountSettingsComponent,
+    TestComponent
   ],
   imports: [
     CommonModule,
