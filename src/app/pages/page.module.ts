@@ -15,6 +15,8 @@ import { GraficopieComponent } from '../components/graficopie/graficopie.compone
 import { ChartsModule } from 'ng2-charts';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { TestComponent } from './test/test.component';
+import { PromesasComponent } from './promesas/promesas.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { TestComponent } from './test/test.component';
     IncrementadorComponent,
     GraficopieComponent,
     AccountSettingsComponent,
-    TestComponent
+    TestComponent,
+    PromesasComponent,
+    RxjsComponent
   ],
   imports: [
     CommonModule,
