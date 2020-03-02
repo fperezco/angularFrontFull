@@ -7,9 +7,10 @@ import { MainRoutingModule } from './app.routes';
 import { RegisterComponent } from './login/register.component';
 import { PageModule } from './pages/page.module';
 import { SharedModule } from './shared/shared.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //import { SettingsService } from './services/settings/settings.service';
 import { ServiceModule } from './services/service.module';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 
 @NgModule({
@@ -21,9 +22,11 @@ import { ServiceModule } from './services/service.module';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     PageModule,
     SharedModule,
     MainRoutingModule,
+    ReactiveFormsModule
     //ServiceModule //no lo necesito pk uso provideIn root en todos los servicios
   ],
   //providers: [ServiceModule],

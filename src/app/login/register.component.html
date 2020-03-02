@@ -9,34 +9,40 @@
                 <h2 class="title text-uppercase text-bold m-none"><i class="fa fa-user mr-xs"></i> Sign Up</h2>
             </div>
             <div class="panel-body">
-                <form>
+                <form ngNativeValidate [formGroup]="forma" (ngSubmit)="registrarUsuario()">
                     <div class="form-group mb-lg">
                         <label>Name</label>
-                        <input name="name" type="text" class="form-control input-lg" />
+                        <input formControlName="nombre" name="nombre" required type="text" class="form-control input-lg" />
                     </div>
 
                     <div class="form-group mb-lg">
                         <label>E-mail Address</label>
-                        <input name="email" type="email" class="form-control input-lg" />
+                        <input formControlName="correo"  name="correo" required type="email" class="form-control input-lg" />
                     </div>
 
                     <div class="form-group mb-none">
                         <div class="row">
                             <div class="col-sm-6 mb-lg">
                                 <label>Password</label>
-                                <input name="pwd" type="password" class="form-control input-lg" />
+                                <input formControlName="password" name="password" type="password" class="form-control input-lg" />
                             </div>
                             <div class="col-sm-6 mb-lg">
                                 <label>Password Confirmation</label>
-                                <input name="pwd_confirm" type="password" class="form-control input-lg" />
+                                <input formControlName="password2" name="password2"  type="password" class="form-control input-lg" />
                             </div>
                         </div>
+                    </div>
+                    <div class="form-group" *ngIf="forma.errors?.sonIguales && !forma.pristine">
+                        <p class="text-danger">
+                            Las contraseñas han de ser iguales
+                        </p>
+
                     </div>
 
                     <div class="row">
                         <div class="col-sm-8">
                             <div class="checkbox-custom checkbox-default">
-                                <input id="AgreeTerms" name="agreeterms" type="checkbox"/>
+                                <input formControlName="condiciones" name="condiciones" id="AgreeTerms"  type="checkbox"/>
                                 <label for="AgreeTerms">I agree with <a href="#">terms of use</a></label>
                             </div>
                         </div>
@@ -55,7 +61,7 @@
                         <a class="btn btn-twitter mb-md ml-xs mr-xs">Connect with <i class="fa fa-twitter"></i></a>
                     </div>
 
-                    <p class="text-center">Already have an account? <a href="pages-signin.html">Sign In!</a>
+                    <p class="text-center">Already have an account? <a routerLink="/login">Sign In!</a>
 
                 </form>
             </div>
