@@ -17,6 +17,8 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { TestComponent } from './test/test.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { PipesModule } from '../pipes/pipes.module';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -30,7 +32,8 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     AccountSettingsComponent,
     TestComponent,
     PromesasComponent,
-    RxjsComponent
+    RxjsComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +41,8 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     SharedModule,
     RouterModule,
     ChartsModule,
-    PagesRoutingModule
+    PagesRoutingModule,
+    PipesModule
   ],
   exports: [DashboardComponent, ProgressComponent, Graficas1Component,PagesComponent]
 })
