@@ -10,7 +10,8 @@ import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //import { SettingsService } from './services/settings/settings.service';
 import { ServiceModule } from './services/service.module';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from './helpers/jwt.interceptor';
 
 
 @NgModule({
@@ -31,6 +32,9 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
   ],
   //providers: [ServiceModule],
   //providers: [SettingsService], //eliminado al crear el módulo de servicios "ServiceModule"
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ]
 })
 export class AppModule { }

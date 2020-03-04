@@ -76,6 +76,16 @@ export class UsuarioService {
     );
   }
 
+  updateUsuario(usuario: Usuario) {
+    
+    //return this.http.put(`${this.baseUrl}/usuarios/${usuario._id}`, usuario);
+    return this.http.put(`${this.baseUrl}/usuarios/${usuario._id}`, usuario).pipe(
+      map((resp: any) => {
+        return resp;
+      })
+    );
+  }
+
   // si existe info de token la carga en el servicio
   cargarTokenStorage() {
     if (localStorage.getItem("token")) {
