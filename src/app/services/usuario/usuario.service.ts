@@ -4,6 +4,8 @@ import { map } from "rxjs/operators";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { URL_SERVICIOS } from "../../config/config";
 import { Router } from "@angular/router";
+import { SubirArchivoService } from '../subirArchivo/subir-archivo.service';
+import swal from 'sweetalert';
 
 @Injectable({
   providedIn: "root"
@@ -13,7 +15,10 @@ export class UsuarioService {
   usuario: Usuario;
   token: string;
 
-  constructor(private http: HttpClient, public router: Router) {
+  constructor(
+    private http: HttpClient,
+     public router: Router,
+     public subirArchivoService:SubirArchivoService) {
     this.cargarTokenStorage();
   }
 
@@ -118,4 +123,33 @@ export class UsuarioService {
   getImagenUsuario(){
     return this.usuario.img;
   }
+
+
+
+  /**
+   * Cambio la imagen para un objeto usuario, dada la imagen y su id
+   * @param file 
+   * @param id 
+   */
+  cambiarImagen(file: File, id:string){
+
+    this.subirArchivoService.subirArchivo(file,"usuarios",id)
+      .then( (resp: any) => {
+        console.log(resp.usuario);
+        console.log("resp.usuario = ",resp.usuario);
+        //esto no lo entiendo, si no asigno el campo uno por uno
+        //no tienen lugar el refresco que si lo hago por el objeto entero
+        //aunque este se modifique ¿? que raro
+        //this.usuario = resp.usuario;
+        this.usuario.img = resp.usuario.img;
+        swal("imagen actualizada","imagen actualizada","success");
+        this.guardarStorage(resp.usuario.id, resp.token, resp.usuario);
+      })
+      .catch ( resp => {
+        console.log("error",resp);
+      });
+
+  }
+
+
 }

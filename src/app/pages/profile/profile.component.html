@@ -17,7 +17,7 @@
       <div class="form-group">
         <label class="col-md-3 control-label" for="inputDefault">Foto Perfil</label>
         <div class="col-md-6">
-          <input type="file" class="form-control" id="inputDefault" />
+          <input type="file" (change)="seleccionImagen($event.target.files[0])" class="form-control" id="inputDefault" />
         </div>
       </div>
 
@@ -29,15 +29,25 @@
     </form>
   </div>
   <div class="col-md-6 col-sm-6">
-    <div class="thumb-info mb-md">
-      <img
-        [src]="usuario.img | imagen"
-        class="rounded img-responsive"
-        [alt]="usuario.nombre"
-      />
-      <div class="thumb-info-title">
-        <span class="thumb-info-inner">{{ usuario.nombre }}</span>
-        <span class="thumb-info-type">{{ usuario.role }}</span>
+    <div class="form-group">  
+      <div class="col-md-6">
+        <img
+            *ngIf="!imagenTemp"
+            [src]="usuario.img | imagen"
+            class="rounded img-responsive"
+            [alt]="usuario.nombre"
+          />
+
+          <img
+          [src]="imagenTemp"
+          class="rounded img-responsive"
+          [alt]="usuario.nombre"
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-6">
+        <button type="submit" (click)="cambiarImagen()" [disabled]="!imagenSubir" class="form-control btn btn-primary" value="Actualizar Foto">Actualizar Foto</button>
       </div>
     </div>
   </div>
