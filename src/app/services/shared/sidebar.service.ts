@@ -20,10 +20,12 @@ export class SidebarService {
       ]
     },
     {
-      titulo: 'Principal2',
+      titulo: 'Mantenimientos',
       icono: 'fa fa-home',
       submenu: [
-        { titulo: 'Test', url: '/test'}
+        { titulo: 'Usuarios', url: '/usuarios'},
+        { titulo: 'Hospitales', url: '/hospitales'},
+        { titulo: 'Médicos', url: '/medicos'}
       ]
     }
 

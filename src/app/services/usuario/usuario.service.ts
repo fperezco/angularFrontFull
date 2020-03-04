@@ -152,4 +152,9 @@ export class UsuarioService {
   }
 
 
+  getUsuarios(){
+    return this.http.get(`${this.baseUrl}/usuarios`);
+  }
+
+
 }

@@ -9,13 +9,13 @@
     </div>
   
     <div class="nano">
-      <div class="nano-content">
+      <div class="nano-content" style="right: -17px;"> 
         <nav id="menu" class="nav-main" role="navigation">
           <ul class="nav nav-main" >
 
             <li class="nav-parent" routerLinkActive="nav-expanded" *ngFor="let menu of _sidebar.menu">
               <a>
-                <i class="menu.icono" aria-hidden="true"></i>
+                <i [class]="menu.icono" aria-hidden="true"></i>
                 <span>{{menu.titulo}}</span>
               </a>
               <ul class="nav nav-children">
