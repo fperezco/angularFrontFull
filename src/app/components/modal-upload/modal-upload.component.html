@@ -1,0 +1,69 @@
+<div
+  class="fondo-negro animated fadeIn"
+  style="
+background-color: rgba(0, 0, 0, 0.4);
+position:fixed;
+top:0px;
+left:0px;
+width:100%;
+height:100%;
+z-index:9999"
+  [ngClass]="modalUploadService.oculto"
+>
+  <div class="modal" style="display:block" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button
+            type="button"
+            class="close"
+            (click)="ocultar()"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+          <div class="form-group text-center">
+            <div class="col-md-6 text-center">
+              <img
+                *ngIf="!imagenTemp"
+                [src]="'xxx' | imagen"
+                class="rounded img-responsive"
+              />
+
+              <img
+                *ngIf="imagenTemp"
+                [src]="imagenTemp"
+                class="rounded img-responsive"
+              />
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <input
+              type="file"
+              (change)="seleccionImagen($event.target.files[0])"
+              class="form-control"
+              id="inputDefault"
+            />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="subirImagen()"
+            [disabled]="!imagenTemp"
+          >
+            Guardar
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="ocultar()">
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

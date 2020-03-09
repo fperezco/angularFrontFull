@@ -82,7 +82,6 @@ export class UsuarioService {
   }
 
   updateUsuario(usuario: Usuario) {
-    
     //return this.http.put(`${this.baseUrl}/usuarios/${usuario._id}`, usuario);
     return this.http.put(`${this.baseUrl}/usuarios/${usuario._id}`, usuario).pipe(
       map((resp: any) => {
@@ -90,6 +89,15 @@ export class UsuarioService {
       })
     );
   }
+
+    // consume el webservice que crea un usuario
+    deleteUsuario(usuario: Usuario) {
+      return this.http.delete(`${this.baseUrl}/usuarios/${usuario._id}`).pipe(
+        map((resp: any) => {
+          return resp;
+        })
+      );
+    }
 
   // si existe info de token la carga en el servicio
   cargarTokenStorage() {
@@ -152,8 +160,8 @@ export class UsuarioService {
   }
 
 
-  getUsuarios(){
-    return this.http.get(`${this.baseUrl}/usuarios`);
+  getUsuarios(offset: number = 0,limit: number = 5){
+    return this.http.get(`${this.baseUrl}/usuarios?desde=${offset}&limite=${limit}`);
   }
 
 

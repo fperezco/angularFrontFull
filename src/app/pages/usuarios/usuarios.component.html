@@ -5,13 +5,15 @@
         <i class="fa fa-refresh fa-spin"></i>
         <br>
     </div>
-    <div class="row" *ngIf="usuarios">
+    <div  *ngIf="usuarios">
         <div class="col-sm-4" style="float:right;margin-bottom: 10px;margin-right: -15px;">
             <input  type="text" class="form-control" (input)="buscar($event.target.value)" placeholder="buscar"/>
         </div>
         <table  class="table table-bordered table-striped mb-none">
+            <caption>Usuarios en el sistema <small>{{total}}</small></caption>
             <thead>
                 <tr>
+                    <th>Img</th>
                     <th>Nombre</th>
                     <th>Rol</th>
                     <th>Editar</th>
@@ -19,15 +21,35 @@
             </thead>
             <tbody>
                 <tr *ngFor="let usuario of usuarios">
+                    <td><img width="40px" class="img-circle" src="{{usuario.img | imagen }}" (click)="mostrarModalCambioImg(usuario._id)"></td>
                     <td>{{usuario.nombre}}</td>
-                    <td>{{usuario.role}}</td>
-                    <td>Editar</td>
+                    <td>
+                        <select [(ngModel)]="usuario.role" class="form-control">
+                            <option value="USER_ROLE">USER_ROLE</option>    
+                            <option value="ADMIN_ROLE">ADMIN_ROLE</option>    
+                        </select>
+                    
+                    </td>
+                    <td>
+                        <button class="btn btn-success" (click)="actualizarUsuario(usuario)"><i class="fa fa-save"></i></button>&nbsp;
+                        <button class="btn btn-danger" (click)="borrarUsuario(usuario)"><i class="fa fa-trash-o"></i></button>
+                    </td>
                 </tr>
             </tbody>
         </table>
     </div>    
     <br>
-    <button class="btn btn-secondary">< Anteriores</button>&nbsp;
-    <button class="btn btn-secondary">Siguientes > </button>
+    <button class="btn btn-secondary" (click)="anterior()" [disabled]="ultimo - registrosPorPagina < 0">< Anteriores</button>&nbsp;
+    <button class="btn btn-secondary" (click)="siguiente()" [disabled]="ultimo + registrosPorPagina >= total">Siguientes > </button>
+    items per page 
+    <select (change)="cambioItemsPerPage($event.target.value)">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+    </select>
+    <br>
+    Página {{(ultimo/registrosPorPagina)+1}} de {{total/registrosPorPagina |  number:'1.0-0'}}
 </div>
+
 

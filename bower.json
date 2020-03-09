@@ -1,0 +1,20 @@
+{
+  "name": "adminpro",
+  "description": "",
+  "main": "",
+  "authors": [
+    "jonytrifulca <jonytrifulca@hotmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/fperezco/angularFrontFull",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "paper-datatable": "^0.9.8"
+  }
+}
