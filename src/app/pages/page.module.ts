@@ -31,7 +31,7 @@ import { MedicoComponent } from './medicos/medico.component';
     DashboardComponent,
     ProgressComponent,
     Graficas1Component,
-    PagesComponent,
+    //PagesComponent,
     IncrementadorComponent,
     GraficopieComponent,
     AccountSettingsComponent,
@@ -40,7 +40,7 @@ import { MedicoComponent } from './medicos/medico.component';
     RxjsComponent,
     ProfileComponent,
     UsuariosComponent,
-    ModalUploadComponent,
+    //ModalUploadComponent,
     HospitalesComponent,
     MedicosComponent,
     MedicoComponent
@@ -54,6 +54,6 @@ import { MedicoComponent } from './medicos/medico.component';
     PagesRoutingModule,
     PipesModule
   ],
-  exports: [DashboardComponent, ProgressComponent, Graficas1Component,PagesComponent]
+  exports: [DashboardComponent, ProgressComponent, Graficas1Component]
 })
 export class PageModule { }

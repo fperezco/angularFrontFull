@@ -14,6 +14,7 @@ import { ServiceModule } from './services/service.module';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
+import { PagesComponent } from './pages/pages.component';
 
 
 
@@ -21,14 +22,15 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    PagesComponent
   ],
   //schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    PageModule,
+    //PageModule, => lo cargaremos de forma dinamica con el load children
     SharedModule,
     MainRoutingModule,
     ReactiveFormsModule

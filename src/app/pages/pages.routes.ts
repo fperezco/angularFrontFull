@@ -19,10 +19,25 @@ import { AdminGuard } from '../services/guards/admin.guard';
 
 
 
+const pagesRoutes: Routes = [
+    { path: 'dashboard', component: DashboardComponent, data: {titulo: 'Dashboard'} },
+    { path: 'progress', component: ProgressComponent, data: {titulo: 'Progress Bar'} },
+    { path: 'graficas1', component: Graficas1Component, data: {titulo: 'Graficas'}},
+    { path: 'promesas', component: PromesasComponent, data: {titulo: 'Promises'}},
+    { path: 'rxjs', component: RxjsComponent, data: {titulo: 'Observables (RxJs)'}},
+    { path: 'account-settings', component: AccountSettingsComponent, data: {titulo: 'Account Settings'}},
+    { path: 'profile', component: ProfileComponent, data: {titulo: 'Perfil'}},
+    { path: 'usuarios', component: UsuariosComponent, data: {titulo: 'Usuarios'}, canActivate: [AdminGuard] },
+    { path: 'hospitales', component: HospitalesComponent, data: {titulo: 'Hospitales'}},
+    { path: 'medicos', component: MedicosComponent, data: {titulo: 'Medicos'}},
+    { path: 'medico/:id', component: MedicoComponent, data: {titulo: 'Medicos'}},
+    { path: 'test', component: TestComponent, data: {titulo: 'Test Zone'}},
+    { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
+];
 
 
 // Antes de las modificaciones del lazy load
-const pagesRoutes: Routes = [
+/*const pagesRoutes: Routes = [
     {
         path: '',
         component: PagesComponent,
@@ -43,7 +58,7 @@ const pagesRoutes: Routes = [
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
         ]
      }
-];
+];*/
 
 @NgModule({
     imports: [RouterModule.forChild(pagesRoutes)],
