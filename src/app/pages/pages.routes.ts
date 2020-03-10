@@ -17,6 +17,11 @@ import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoComponent } from './medicos/medico.component';
 import { AdminGuard } from '../services/guards/admin.guard';
 
+
+
+
+
+// Antes de las modificaciones del lazy load
 const pagesRoutes: Routes = [
     {
         path: '',
