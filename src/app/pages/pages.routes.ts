@@ -1,4 +1,4 @@
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, CanActivate } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -15,6 +15,7 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 import { HospitalesComponent } from './hospitales/hospitales.component';
 import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoComponent } from './medicos/medico.component';
+import { AdminGuard } from '../services/guards/admin.guard';
 
 const pagesRoutes: Routes = [
     {
@@ -29,7 +30,7 @@ const pagesRoutes: Routes = [
             { path: 'rxjs', component: RxjsComponent, data: {titulo: 'Observables (RxJs)'}},
             { path: 'account-settings', component: AccountSettingsComponent, data: {titulo: 'Account Settings'}},
             { path: 'profile', component: ProfileComponent, data: {titulo: 'Perfil'}},
-            { path: 'usuarios', component: UsuariosComponent, data: {titulo: 'Usuarios'}},
+            { path: 'usuarios', component: UsuariosComponent, data: {titulo: 'Usuarios'}, canActivate: [AdminGuard] },
             { path: 'hospitales', component: HospitalesComponent, data: {titulo: 'Hospitales'}},
             { path: 'medicos', component: MedicosComponent, data: {titulo: 'Medicos'}},
             { path: 'medico/:id', component: MedicoComponent, data: {titulo: 'Medicos'}},

@@ -14,6 +14,7 @@ export class UsuarioService {
   baseUrl = URL_SERVICIOS;
   usuario: Usuario;
   token: string;
+  menu: string;
 
   constructor(
     private http: HttpClient,
@@ -39,7 +40,8 @@ export class UsuarioService {
     return this.http.post(`${this.baseUrl}/login`, usuario).pipe(
       map((resp: any) => {
         //return resp;
-        this.guardarStorage(resp.id, resp.token, resp.usuario);
+        console.log("login ok, respuesta = ",resp);
+        this.guardarStorage(resp.id, resp.token, resp.usuario,resp.menu);
         return true;
         /*localStorage.setItem("id", resp.id);
         localStorage.setItem("usuario", JSON.stringify(resp.usuario));
@@ -52,13 +54,20 @@ export class UsuarioService {
     );
   }
 
-  guardarStorage(id: string, token: string, usuario: Usuario) {
+  guardarStorage(id: string, token: string, usuario: Usuario, menu:string) {
     localStorage.setItem("id", id);
     localStorage.setItem("usuario", JSON.stringify(usuario));
     localStorage.setItem("token", token);
+    localStorage.setItem("menu", JSON.stringify(menu));
 
     this.usuario = usuario;
     this.token = token;
+    this.menu = menu;
+    //console.log("GUARDAR STORAGE MENU = ",this.menu);
+  }
+
+  getMenu(){
+    return JSON.parse(localStorage.getItem("menu"));
   }
 
   loginGoogle(token: any) {
@@ -66,7 +75,7 @@ export class UsuarioService {
     return this.http.post(`${this.baseUrl}/google`, { token }).pipe(
       map((resp: any) => {
         //return resp;
-        this.guardarStorage(resp.id, resp.token, resp.usuario);
+        this.guardarStorage(resp.id, resp.token, resp.usuario, resp.menu);
         return true;
       })
     );
@@ -122,9 +131,11 @@ export class UsuarioService {
   logout() {
     this.usuario = null;
     this.token = "";
+    this.menu = null;
     localStorage.removeItem("usuario");
     localStorage.removeItem("token");
     localStorage.removeItem("id");
+    localStorage.removeItem("menu");
     this.router.navigate(["/login"]);
   }
 
@@ -151,7 +162,7 @@ export class UsuarioService {
         //this.usuario = resp.usuario;
         this.usuario.img = resp.usuario.img;
         swal("imagen actualizada","imagen actualizada","success");
-        this.guardarStorage(resp.usuario.id, resp.token, resp.usuario);
+        this.guardarStorage(resp.usuario.id, resp.token, resp.usuario, resp.menu);
       })
       .catch ( resp => {
         console.log("error",resp);

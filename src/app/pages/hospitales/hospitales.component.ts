@@ -5,7 +5,7 @@ import { BusquedaService } from '../../services/busqueda.service';
 import { ModalUploadService } from '../../components/modal-upload/modal-upload.service';
 import swal from 'sweetalert';
 
-//declare var swal: any;
+declare var swal: any;
 
 @Component({
   selector: 'app-hospitales',

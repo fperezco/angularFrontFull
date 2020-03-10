@@ -67,7 +67,7 @@
         <img
           *ngIf="medico._id"
           [src]="medico.img | imagen: 'medico'"
-          class="img-rounded  img-fluid"
+          class="img-rounded img-fluid img-responsive"
           [alt]="medico.nombre"
           (click)="modalCambiarImg(medico._id)"
           style="cursor: pointer;"

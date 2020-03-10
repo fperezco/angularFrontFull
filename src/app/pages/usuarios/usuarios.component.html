@@ -15,6 +15,7 @@
                 <tr>
                     <th>Img</th>
                     <th>Nombre</th>
+                    <th>Mail</th>
                     <th>Rol</th>
                     <th>Editar</th>
                 </tr>
@@ -23,6 +24,7 @@
                 <tr *ngFor="let usuario of usuarios">
                     <td><img width="40px" class="img-circle" src="{{usuario.img | imagen }}" (click)="mostrarModalCambioImg(usuario._id)"></td>
                     <td>{{usuario.nombre}}</td>
+                    <td>{{usuario.email}}</td>
                     <td>
                         <select [(ngModel)]="usuario.role" class="form-control">
                             <option value="USER_ROLE">USER_ROLE</option>    

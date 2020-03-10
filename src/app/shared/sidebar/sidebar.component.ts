@@ -9,10 +9,12 @@ import { SidebarService } from 'src/app/services/service.index';
 export class SidebarComponent implements OnInit {
 
 
-  constructor(public _sidebar: SidebarService) { }
+  constructor(public _sidebar: SidebarService) {
+    
+   }
 
   ngOnInit() {
-
+    //this._sidebar.cargarMenu();
   }
 
 }
