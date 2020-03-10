@@ -1,0 +1,52 @@
+<div class="panel-body">
+    <div class="col-lg-12 alert alert-warning text-center" *ngIf="!medicos">
+        LOADING
+        <br>
+        <i class="fa fa-refresh fa-spin"></i>
+        <br>
+    </div>
+    <div  *ngIf="medicos">
+        <div>
+            <input  type="text" class="form-control" (input)="buscar($event.target.value)" placeholder="buscar"/>
+        </div>
+        <div class="col-sm-4" style="float:right;margin-bottom: 10px;margin-top: 10px;">
+            <button class="btn btn-success" [routerLink]="['/medico','nuevo']"> Crear Medico </button>
+        </div>
+        <table  class="table table-bordered table-striped mb-none">
+            <caption>Medicos en el sistema <small>{{total}}</small></caption>
+            <thead>
+                <tr>
+                    <th>Img</th>
+                    <th>Nombre</th>
+                    <th>Hospital</th>
+                    <th>Editar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let medico of medicos">
+                    <td><img width="40px" class="img-circle" [src]="medico.img | imagen:'medico'" (click)="mostrarModalCambioImg(medico._id)"></td>
+                    <td>{{medico.nombre}}</td>
+                    <td>{{medico.hospital.nombre}}</td>
+                    <td>
+                        <button class="btn btn-success"  [routerLink]="['/medico', medico._id]"><i class="fa fa-edit"></i></button>&nbsp;
+                        <button class="btn btn-danger" (click)="borrarMedico(medico)"><i class="fa fa-trash-o"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>    
+    <br>
+    <button class="btn btn-secondary" (click)="anterior()" [disabled]="ultimo - registrosPorPagina < 0">< Anteriores</button>&nbsp;
+    <button class="btn btn-secondary" (click)="siguiente()" [disabled]="ultimo + registrosPorPagina >= total">Siguientes > </button>
+    items per page 
+    <select (change)="cambioItemsPerPage($event.target.value)">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+    </select>
+    <br>
+    Página {{(ultimo/registrosPorPagina)+1}} de {{total/registrosPorPagina |  number:'1.0-0'}}
+</div>
+
+

@@ -7,12 +7,15 @@ import { URL_SERVICIOS } from '../config/config';
 export class ImagenPipe implements PipeTransform {
   transform(img: string, tipo: string = 'usuario'): any {
     let baseUrl = URL_SERVICIOS + '/imagenes';
+    console.log("pipe tipo = ",tipo);
 
     if (!img) {
+      console.log("no viene imagen => salgo");
       return baseUrl + '/usuarios/fake'; // backend devolvera una foto empty
     }
     if (img.indexOf('https') >= 0) {
       // si es imagen de gogle
+      console.log("es de google => salgo");
       return img;
     }
 
@@ -21,11 +24,11 @@ export class ImagenPipe implements PipeTransform {
       case 'usuario':
         baseUrl += '/usuarios/' + img;
         break;
-      case 'medicos':
+      case 'medico':
         baseUrl += '/medicos/' + img;
         break;
       case 'hospital':
-        baseUrl += '/hospital/' + img;
+        baseUrl += '/hospitales/' + img;
         break;
       default:
         console.log('tipo para obtener imagen no existe');

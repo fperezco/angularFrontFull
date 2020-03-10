@@ -1,0 +1,91 @@
+<div class="row">
+  <div class="col-md-6" >
+    <form
+      #f="ngForm"
+      ngNativeValidate
+      (ngSubmit)="actualizarMedico()"
+      method="post"
+    >
+      <div class="form-group">
+        <label class="col-md-3 control-label" for="inputDefault">Nombre</label>
+        <div class="col-md-6">
+          <input
+            required
+            [(ngModel)]="medico.nombre"
+            name="nombre"
+            id="nombre"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label" for="inputDefault"
+          >Hospital</label
+        >
+        <div class="col-md-6">
+          <select
+            class="form-control"
+            name="hospital"
+            [(ngModel)]="medico.hospital"
+            required
+            (change)="cambioHospital($event)"
+          >
+            <option value="">Seleccione Hospital</option>
+            <option
+              *ngFor="let hospital of hospitales"
+              [value]="hospital._id"
+              >{{ hospital.nombre }}</option
+            >
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button
+          *ngIf="this.medico._id"
+          type="submit"
+          class="form-control btn btn-primary btn-block"
+          value="Actualizar"
+        >
+          Actualizar
+        </button>
+        <button
+          *ngIf="!this.medico._id"
+          type="submit"
+          class="form-control btn btn-primary btn-block"
+          value="Actualizar"
+        >
+          Crear
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class=" col-md-3">
+    <div class="card card-body text-center">
+        <img
+          *ngIf="medico._id"
+          [src]="medico.img | imagen: 'medico'"
+          class="img-rounded  img-fluid"
+          [alt]="medico.nombre"
+          (click)="modalCambiarImg(medico._id)"
+          style="cursor: pointer;"
+        />
+    </div>
+  </div>
+
+
+  <div class=" col-md-3">
+    <div class="card card-body text-center">
+        <img
+        [src]="hospital.img | imagen: 'hospital'"
+        class="img-rounded img-fluid img-responsive"
+        [alt]="hospital.nombre"
+        style="cursor: pointer;"
+      />
+    </div>
+  </div>
+
+<br />
+<pre>{{ medico | json }}</pre>
