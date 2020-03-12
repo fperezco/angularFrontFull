@@ -6,7 +6,7 @@ import swal from 'sweetalert';
 import { ModalUploadService } from '../../components/modal-upload/modal-upload.service';
 
 
-declare var swal: any;
+//declare var swal: any;
 
 @Component({
   selector: "app-usuarios",
@@ -108,6 +108,7 @@ export class UsuariosComponent implements OnInit {
         title: "¿esta seguro",
         text: "Esta a punto de borrar a "+ usuario.nombre,
         icon: "warning",
+        type: "warning",
         buttons: true,
         dangerMode: true,
       })

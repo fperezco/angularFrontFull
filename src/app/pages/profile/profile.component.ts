@@ -33,7 +33,8 @@ export class ProfileComponent implements OnInit {
         this.usuarioService.guardarStorage(
           resp.usuario._id,
           this.usuarioService.token,
-          resp.usuario
+          resp.usuario,
+          resp.menu
         );
         swal("Usuario actualizado", "Usuario actualizado", "success");
       },

@@ -5,7 +5,7 @@ import { BusquedaService } from '../../services/busqueda.service';
 import { ModalUploadService } from '../../components/modal-upload/modal-upload.service';
 import swal from 'sweetalert';
 
-declare var swal: any;
+//declare var swal: any;
 
 @Component({
   selector: 'app-hospitales',
@@ -103,6 +103,7 @@ export class HospitalesComponent implements OnInit {
     swal({
       text: 'Introduzca nombre hospital',
       content: "input",
+      type: 'warning',
       buttons: true
     })
     .then(name => {
@@ -135,6 +136,7 @@ export class HospitalesComponent implements OnInit {
         title: "¿esta seguro",
         text: "Esta a punto de borrar a "+ hospital.nombre,
         icon: "warning",
+        type: "warning",//??
         buttons: true,
         dangerMode: true,
       })

@@ -109,6 +109,7 @@ export class MedicosComponent implements OnInit {
         title: "¿esta seguro",
         text: "Esta a punto de borrar a "+ medico.nombre,
         icon: "warning",
+        type: "warning",
         buttons: true,
         dangerMode: true,
       })

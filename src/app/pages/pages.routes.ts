@@ -16,11 +16,12 @@ import { HospitalesComponent } from './hospitales/hospitales.component';
 import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoComponent } from './medicos/medico.component';
 import { AdminGuard } from '../services/guards/admin.guard';
+import { VerificaRenovacionGuard } from '../services/guards/verifica-renovacion.guard';
 
 
 
 const pagesRoutes: Routes = [
-    { path: 'dashboard', component: DashboardComponent, data: {titulo: 'Dashboard'} },
+    { path: 'dashboard', component: DashboardComponent, data: {titulo: 'Dashboard'}, canActivate: [VerificaRenovacionGuard] },
     { path: 'progress', component: ProgressComponent, data: {titulo: 'Progress Bar'} },
     { path: 'graficas1', component: Graficas1Component, data: {titulo: 'Graficas'}},
     { path: 'promesas', component: PromesasComponent, data: {titulo: 'Promises'}},
