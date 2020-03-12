@@ -2,7 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { UsuarioService } from "../../services/usuario/usuario.service";
 import { Usuario } from "../../models/usuario.model";
 import { BusquedaService } from "../../services/busqueda.service";
-import swal from 'sweetalert';
+// import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 import { ModalUploadService } from '../../components/modal-upload/modal-upload.service';
 
 
@@ -90,27 +91,41 @@ export class UsuariosComponent implements OnInit {
     .subscribe(  (resp: any) => {
       // this.video = resp.data; //pk delete no me esta devolviendo nada
       console.log('en compomente actu usuario:', usuario);
-      swal("Usuario actualizado correctamente","", "success");
+      //swal("Usuario actualizado correctamente","", "success");
+      Swal.fire({
+        icon: 'success',
+        title: name,
+        text: 'Usuario actualizado correctamente'
+      });
+      
     },
     (error) => {
       console.log('Error en update ',error);
-      swal("error actualizando usuario", "error");
+      //swal("error actualizando usuario", "error");
+      Swal.fire({
+        icon: 'error',
+        title: "error actualizando usuario",
+        text: "error actualizando usuario"
+      });
     });
   }
 
   borrarUsuario( usuario: Usuario){
     if(usuario._id === this.usuarioService.usuario._id) {
-      swal("no se puede borrar a si mismo", "error");
+      Swal.fire({
+        icon: 'error',
+        title: "No se puede borrar a si mismo",
+        text: "no se puede borrar a si mismo"
+      });
     }
     else {
       //confirmamos
-      swal( {
+      Swal.fire({
         title: "¿esta seguro",
         text: "Esta a punto de borrar a "+ usuario.nombre,
-        icon: "warning",
-        type: "warning",
-        buttons: true,
-        dangerMode: true,
+        icon: 'question',
+        showCancelButton: true,
+        showConfirmButton: true
       })
       .then ( borrar => {
         console.log(borrar);
@@ -120,7 +135,11 @@ export class UsuariosComponent implements OnInit {
             .subscribe(  (resp: any) => {
               // this.video = resp.data; //pk delete no me esta devolviendo nada
               console.log('en compomente borrar usuario:', usuario);
-              swal("Usuario borrado correctamente","", "success");
+              Swal.fire({
+                icon: 'success',
+                title: name,
+                text: 'Usuario borrado correctamente'
+              });
               //evitar consumir de nuevo el webservice
               // get index of object with id:37
               var removeIndex = this.usuarios.map(function(item) { return item._id; }).indexOf(usuario._id);
@@ -129,7 +148,11 @@ export class UsuariosComponent implements OnInit {
             },
             (error) => {
               console.log('Error en delete ',error);
-              swal("error borrando usuario", "error");
+              Swal.fire({
+                icon: 'error',
+                title: "error borrando usuario",
+                text: "error borrando usuario"
+              });
             });
         }
       });

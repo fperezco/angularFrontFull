@@ -3,7 +3,8 @@ import { MedicoService } from '../../services/shared/medico.service';
 import { BusquedaService } from '../../services/busqueda.service';
 import { ModalUploadService } from '../../components/modal-upload/modal-upload.service';
 import { Medico } from '../../models/medico.model';
-import swal from 'sweetalert';
+//import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-medicos',
@@ -88,11 +89,21 @@ export class MedicosComponent implements OnInit {
     .subscribe(  (resp: any) => {
       // this.video = resp.data; //pk delete no me esta devolviendo nada
       console.log('en compomente actu medico:', medico);
-      swal("Medico actualizado correctamente","", "success");
+      //Swal("Medico actualizado correctamente","", "success");
+      Swal.fire({
+        icon: 'success',
+        title: name,
+        text: 'Medico actualizo correctamente'
+      });
     },
     (error) => {
       console.log('Error en update ',error);
-      swal("error actualizando medico", "error");
+      //swal("error actualizando medico", "error");
+      Swal.fire({
+        icon: 'error',
+        title: "error actualizando medico",
+        text: "error actualizando medico"
+      });
     });
   }
 
@@ -105,13 +116,20 @@ export class MedicosComponent implements OnInit {
   borrarMedico( medico: Medico){
 
       //confirmamos
-      swal( {
+     /* swal( {
         title: "¿esta seguro",
         text: "Esta a punto de borrar a "+ medico.nombre,
         icon: "warning",
         type: "warning",
         buttons: true,
         dangerMode: true,
+      })*/
+      Swal.fire({
+        title: "esta seguro?",
+        text: "Esta a punto de borrar a "+ medico.nombre,
+        icon: 'question',
+        showCancelButton: true,
+        showConfirmButton: true
       })
       .then ( borrar => {
         console.log(borrar);
@@ -121,7 +139,11 @@ export class MedicosComponent implements OnInit {
             .subscribe(  (resp: any) => {
               // this.video = resp.data; //pk delete no me esta devolviendo nada
               console.log('en compomente borrar medico:', medico);
-              swal("Medico borrado correctamente","", "success");
+              Swal.fire({
+                icon: 'success',
+                title: name,
+                text: 'Medico borrado correctamente'
+              });
               //evitar consumir de nuevo el webservice
               // get index of object with id:37
               var removeIndex = this.medicos.map(function(item) { return item._id; }).indexOf(medico._id);
@@ -130,7 +152,11 @@ export class MedicosComponent implements OnInit {
             },
             (error) => {
               console.log('Error en delete ',error);
-              swal("error borrando medico", "error");
+              Swal.fire({
+                icon: 'error',
+                title: "error borrando medico",
+                text: "error borrando medico"
+              });
             });
         }
       });

@@ -3,7 +3,8 @@ import { HospitalService } from '../../services/hospital/hospital.service';
 import { Hospital } from '../../models/hospital.model';
 import { BusquedaService } from '../../services/busqueda.service';
 import { ModalUploadService } from '../../components/modal-upload/modal-upload.service';
-import swal from 'sweetalert';
+//import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 //declare var swal: any;
 
@@ -90,38 +91,65 @@ export class HospitalesComponent implements OnInit {
     .subscribe(  (resp: any) => {
       // this.video = resp.data; //pk delete no me esta devolviendo nada
       console.log('en compomente actu hospital:', hospital);
-      swal("Hospital actualizado correctamente","", "success");
+      //swal("Hospital actualizado correctamente","", "success");
+      Swal.fire({
+        icon: 'success',
+        title: name,
+        text: 'Hospital actualizado correctamente'
+      });
     },
     (error) => {
       console.log('Error en update ',error);
-      swal("error actualizando hospital", "error");
+      //swal("error actualizando hospital", "error");
+      Swal.fire({
+        icon: 'error',
+        title: "error actualizando hospital",
+        text: "error actualizando hospital"
+      });
+      
     });
   }
 
 
   crearHospital(){
-    swal({
+    /*swal({
       text: 'Introduzca nombre hospital',
       content: "input",
       type: 'warning',
       buttons: true
+    })*/
+    Swal.fire({
+      title: "Introduzca nombre hospital",
+      input: "text",
+      showCancelButton: true,
+      confirmButtonText: "Guardar",
+      cancelButtonText: "Cancelar",
     })
+    
     .then(name => {
       if (!name) throw null;
      
-      console.log("hospital = ", name);
-      var hospital = new Hospital(name,null);
+      console.log("hospital = ", name.value);
+      var hospital = new Hospital(name.value,null);
       console.log("conformando hospital", hospital);
       this.hospitalService.crearHospital(hospital)
         .subscribe(  (resp: any) => {
           // this.video = resp.data; //pk delete no me esta devolviendo nada
           console.log('en compomente actu hospital:', resp);
-          swal("Hospital creado correctamente","", "success");
+          Swal.fire({
+            icon: 'success',
+            title: name.value,
+            text: 'Hospital creado correctamente'
+          });
           this.getAllHospitals(0,this.registrosPorPagina);
         },
         (error) => {
           console.log('Error en update ',error);
-          swal("error creando hospital", "error");
+          Swal.fire({
+            icon: 'error',
+            title: "error creando hospital",
+            text: "error creando hospital"
+          });
         });
 
     });
@@ -132,13 +160,20 @@ export class HospitalesComponent implements OnInit {
   borrarHospital( hospital: Hospital){
 
       //confirmamos
-      swal( {
+     /* swal( {
         title: "¿esta seguro",
         text: "Esta a punto de borrar a "+ hospital.nombre,
         icon: "warning",
         type: "warning",//??
         buttons: true,
         dangerMode: true,
+      })*/
+      Swal.fire({
+        title: "¿esta seguro",
+        text: "Esta a punto de borrar a "+ hospital.nombre,
+        icon: "warning",
+        showCancelButton: true,
+        showConfirmButton: true
       })
       .then ( borrar => {
         console.log(borrar);
@@ -148,7 +183,14 @@ export class HospitalesComponent implements OnInit {
             .subscribe(  (resp: any) => {
               // this.video = resp.data; //pk delete no me esta devolviendo nada
               console.log('en compomente borrar hospital:', hospital);
-              swal("Hospital borrado correctamente","", "success");
+              //swal("Hospital borrado correctamente","", "success");
+
+              Swal.fire({
+                icon: 'success',
+                title: name,
+                text: 'Hospital borrado correctamente'
+              });
+
               //evitar consumir de nuevo el webservice
               // get index of object with id:37
               var removeIndex = this.hospitales.map(function(item) { return item._id; }).indexOf(hospital._id);
@@ -157,7 +199,12 @@ export class HospitalesComponent implements OnInit {
             },
             (error) => {
               console.log('Error en delete ',error);
-              swal("error borrando hospital", "error");
+              //swal("error borrando hospital", "error");
+              Swal.fire({
+                icon: 'error',
+                title: "error borrando medico",
+                text: "error borrando medico"
+              });
             });
         }
       });
